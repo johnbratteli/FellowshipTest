@@ -1,0 +1,386 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+	<xs:element name="person">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="title"/>
+				<xs:element ref="salutation"/>
+				<xs:element ref="prefix"/>
+				<xs:element ref="firstName"/>
+				<xs:element ref="lastName"/>
+				<xs:element ref="suffix"/>
+				<xs:element ref="middleName"/>
+				<xs:element ref="goesByName"/>
+				<xs:element ref="formerName"/>
+				<xs:element ref="gender"/>
+				<xs:element ref="dateOfBirth"/>
+				<xs:element ref="maritalStatus"/>
+				<xs:element ref="householdMemberType"/>
+				<xs:element ref="isAuthorized"/>
+				<xs:element ref="status"/>
+				<xs:element ref="occupation"/>
+				<xs:element ref="employer"/>
+				<xs:element ref="school"/>
+				<xs:element ref="denomination"/>
+				<xs:element ref="formerChurch"/>
+				<xs:element ref="barCode"/>
+				<xs:element ref="memberEnvelopeCode"/>
+				<xs:element ref="defaultTagComment"/>
+				<xs:element ref="weblink"/>
+				<xs:element ref="solicit"/>
+				<xs:element ref="thank"/>
+				<xs:element ref="firstRecord"/>
+				<xs:element ref="lastMatchDate"/>
+				<xs:element ref="createdDate"/>
+				<xs:element ref="lastUpdatedDate"/>
+			</xs:sequence>
+			<xs:attribute name="uri" type="xs:anyURI" use="optional"/>
+			<xs:attribute name="imageURI" type="xs:anyURI" use="optional"/>
+			<xs:attribute name="id">
+				<xs:simpleType>
+					<xs:union memberTypes="xs:integer">
+						<xs:simpleType>
+							<xs:restriction base="xs:string">
+								<xs:enumeration value=""/>
+							</xs:restriction>
+						</xs:simpleType>
+					</xs:union>
+				</xs:simpleType>
+			</xs:attribute>
+			<xs:attribute name="oldID" use="optional">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="20"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:attribute>
+			<xs:attribute name="oldHouseholdID" type="xs:string" use="optional"/>
+			<xs:attribute name="iCode" type="xs:string" use="optional"/>
+			<xs:attribute name="householdID" type="xs:integer" use="optional"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="weblink" nillable="true">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="userID" default="" nillable="true">
+					<xs:simpleType>
+						<xs:restriction base="xs:string">
+							<xs:maxLength value="30"/>
+						</xs:restriction>
+					</xs:simpleType>
+				</xs:element>
+				<xs:element name="passwordHint" default="" nillable="true">
+					<xs:simpleType>
+						<xs:restriction base="xs:string">
+							<xs:maxLength value="100"/>
+						</xs:restriction>
+					</xs:simpleType>
+				</xs:element>
+				<xs:element name="passwordAnswer" default="" nillable="true">
+					<xs:simpleType>
+						<xs:restriction base="xs:string">
+							<xs:maxLength value="200"/>
+						</xs:restriction>
+					</xs:simpleType>
+				</xs:element>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="title" nillable="true">
+		<xs:simpleType>
+			<xs:restriction base="xs:string">
+				<xs:maxLength value="150"/>
+			</xs:restriction>
+		</xs:simpleType>
+	</xs:element>
+	<xs:element name="thank" nillable="true">
+		<xs:simpleType>
+			<xs:union memberTypes="xs:boolean">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:enumeration value=""/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:union>
+		</xs:simpleType>
+	</xs:element>
+	<xs:element name="suffix" nillable="true">
+		<xs:simpleType>
+			<xs:restriction base="xs:string">
+				<xs:maxLength value="5"/>
+			</xs:restriction>
+		</xs:simpleType>
+	</xs:element>
+	<xs:element name="subStatus">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="name" type="xs:string"/>
+			</xs:sequence>
+			<xs:attribute name="uri" type="xs:anyURI" use="optional"/>
+			<xs:attribute name="id">
+				<xs:simpleType>
+					<xs:union memberTypes="xs:integer">
+						<xs:simpleType>
+							<xs:restriction base="xs:string">
+								<xs:enumeration value=""/>
+							</xs:restriction>
+						</xs:simpleType>
+					</xs:union>
+				</xs:simpleType>
+			</xs:attribute>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="status">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="name" type="xs:string"/>
+				<xs:element name="comment">
+					<xs:simpleType>
+						<xs:restriction base="xs:string">
+							<xs:maxLength value="200"/>
+						</xs:restriction>
+					</xs:simpleType>
+				</xs:element>
+				<xs:element name="date" default="0001-01-01T00:00:00">
+					<xs:simpleType>
+						<xs:union memberTypes="xs:dateTime">
+							<xs:simpleType>
+								<xs:restriction base="xs:string">
+									<xs:enumeration value=""/>
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:union>
+					</xs:simpleType>
+				</xs:element>
+				<xs:element ref="subStatus"/>
+			</xs:sequence>
+			<xs:attribute name="uri" type="xs:anyURI" use="optional"/>
+			<xs:attribute name="id" type="xs:short" use="required"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="solicit" nillable="true">
+		<xs:simpleType>
+			<xs:union memberTypes="xs:boolean">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:enumeration value=""/>
+						<xs:enumeration value="false"/>
+						<xs:enumeration value="true" />
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:union>
+		</xs:simpleType>
+	</xs:element>
+	<xs:element name="school">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="name" type="xs:string"/>
+			</xs:sequence>
+			<xs:attribute name="uri" type="xs:anyURI" use="optional"/>
+			<xs:attribute name="id">
+				<xs:simpleType>
+					<xs:union memberTypes="xs:integer">
+						<xs:simpleType>
+							<xs:restriction base="xs:string">
+								<xs:enumeration value=""/>
+							</xs:restriction>
+						</xs:simpleType>
+					</xs:union>
+				</xs:simpleType>
+			</xs:attribute>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="salutation" nillable="true">
+		<xs:simpleType>
+			<xs:restriction base="xs:string">
+				<xs:maxLength value="150"/>
+			</xs:restriction>
+		</xs:simpleType>
+	</xs:element>
+	<xs:element name="prefix" nillable="true">
+		<xs:simpleType>
+			<xs:restriction base="xs:string">
+				<xs:maxLength value="10"/>
+			</xs:restriction>
+		</xs:simpleType>
+	</xs:element>
+	<xs:element name="occupation">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="name" type="xs:string"/>
+				<xs:element name="description" nillable="true">
+					<xs:simpleType>
+						<xs:restriction base="xs:string">
+							<xs:maxLength value="100"/>
+						</xs:restriction>
+					</xs:simpleType>
+				</xs:element>
+			</xs:sequence>
+			<xs:attribute name="uri" type="xs:anyURI" use="optional"/>
+			<xs:attribute name="id">
+				<xs:simpleType>
+					<xs:union memberTypes="xs:integer">
+						<xs:simpleType>
+							<xs:restriction base="xs:string">
+								<xs:enumeration value=""/>
+							</xs:restriction>
+						</xs:simpleType>
+					</xs:union>
+				</xs:simpleType>
+			</xs:attribute>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="middleName" nillable="true">
+		<xs:simpleType>
+			<xs:restriction base="xs:string">
+				<xs:maxLength value="30"/>
+			</xs:restriction>
+		</xs:simpleType>
+	</xs:element>
+	<xs:element name="memberEnvelopeCode" nillable="true">
+		<xs:simpleType>
+			<xs:restriction base="xs:string">
+				<xs:maxLength value="50"/>
+			</xs:restriction>
+		</xs:simpleType>
+	</xs:element>
+	<xs:element name="maritalStatus" nillable="true">
+		<xs:simpleType>
+			<xs:restriction base="xs:string">
+				<xs:maxLength value="10"/>
+				<xs:enumeration value="Child/Yth"/>
+				<xs:enumeration value="Divorced"/>
+				<xs:enumeration value="Married"/>
+				<xs:enumeration value="Separated"/>
+				<xs:enumeration value="Single"/>
+				<xs:enumeration value="Widow"/>
+				<xs:enumeration value="Widower"/>
+				<xs:enumeration value=""/>
+			</xs:restriction>
+		</xs:simpleType>
+	</xs:element>
+	<xs:element name="lastUpdatedDate" type="xs:dateTime" default="0001-01-01T00:00:00" nillable="true"/>
+	<xs:element name="lastName" nillable="false">
+		<xs:simpleType>
+			<xs:restriction base="xs:string">
+				<xs:minLength value="1"/>
+				<xs:maxLength value="30"/>
+			</xs:restriction>
+		</xs:simpleType>
+	</xs:element>
+	<xs:element name="lastMatchDate" default="0001-01-01T00:00:00" nillable="true"/>
+	<xs:element name="isAuthorized" nillable="true">
+		<xs:simpleType>
+			<xs:union memberTypes="xs:boolean">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:enumeration value=""/>
+						<xs:enumeration value="false"/>
+						<xs:enumeration value="true" />
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:union>
+		</xs:simpleType>
+	</xs:element>
+	<xs:element name="householdMemberType">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="name" nillable="true">
+					<xs:simpleType>
+						<xs:restriction base="xs:string">
+							<xs:enumeration value=""/>
+							<xs:enumeration value="Head"/>
+							<xs:enumeration value="Spouse"/>
+							<xs:enumeration value="Child"/>
+							<xs:enumeration value="Other"/>
+							<xs:enumeration value="Visitor"/>
+						</xs:restriction>
+					</xs:simpleType>
+				</xs:element>
+			</xs:sequence>
+			<xs:attribute name="uri" type="xs:anyURI" use="optional"/>
+			<xs:attribute name="id" type="xs:integer" use="required"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="goesByName" nillable="true">
+		<xs:simpleType>
+			<xs:restriction base="xs:string">
+				<xs:maxLength value="30"/>
+			</xs:restriction>
+		</xs:simpleType>
+	</xs:element>
+	<xs:element name="gender" nillable="true">
+		<xs:simpleType>
+			<xs:restriction base="xs:string">
+				<xs:maxLength value="6"/>
+				<xs:enumeration value="Male"/>
+				<xs:enumeration value="Female"/>
+				<xs:enumeration value=""/>
+			</xs:restriction>
+		</xs:simpleType>
+	</xs:element>
+	<xs:element name="formerName" nillable="true">
+		<xs:simpleType>
+			<xs:restriction base="xs:string">
+				<xs:maxLength value="30"/>
+			</xs:restriction>
+		</xs:simpleType>
+	</xs:element>
+	<xs:element name="formerChurch" nillable="true">
+		<xs:simpleType>
+			<xs:restriction base="xs:string">
+				<xs:maxLength value="50"/>
+			</xs:restriction>
+		</xs:simpleType>
+	</xs:element>
+	<xs:element name="firstRecord" type="xs:dateTime" default="0001-01-01T00:00:00" nillable="true"/>
+	<xs:element name="firstName" nillable="true">
+		<xs:simpleType>
+			<xs:restriction base="xs:string">
+				<xs:maxLength value="30"/>
+			</xs:restriction>
+		</xs:simpleType>
+	</xs:element>
+	<xs:element name="employer" nillable="true">
+		<xs:simpleType>
+			<xs:restriction base="xs:string">
+				<xs:maxLength value="30"/>
+			</xs:restriction>
+		</xs:simpleType>
+	</xs:element>
+	<xs:element name="denomination">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="name" type="xs:string" nillable="false"/>
+			</xs:sequence>
+			<xs:attribute name="uri" type="xs:anyURI" use="optional"/>
+			<xs:attribute name="id">
+				<xs:simpleType>
+					<xs:union memberTypes="xs:integer">
+						<xs:simpleType>
+							<xs:restriction base="xs:string">
+								<xs:enumeration value=""/>
+							</xs:restriction>
+						</xs:simpleType>
+					</xs:union>
+				</xs:simpleType>
+			</xs:attribute>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="defaultTagComment" nillable="true">
+		<xs:simpleType>
+			<xs:restriction base="xs:string">
+				<xs:maxLength value="50"/>
+			</xs:restriction>
+		</xs:simpleType>
+	</xs:element>
+	<xs:element name="dateOfBirth" type="xs:dateTime" default="0001-01-01T00:00:00" nillable="true"/>
+	<xs:element name="createdDate" type="xs:dateTime" default="0001-01-01T00:00:00" nillable="true"/>
+	<xs:element name="barCode" nillable="true">
+		<xs:simpleType>
+			<xs:restriction base="xs:string">
+        <xs:maxLength value="50"/>
+			</xs:restriction>
+		</xs:simpleType>
+	</xs:element>
+</xs:schema>
