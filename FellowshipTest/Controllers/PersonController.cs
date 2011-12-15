@@ -27,22 +27,66 @@ namespace FellowshipTest.Controllers
         //
         // GET: /Person/Details/5
 
+        // TODO-maybe: would like to use the list retrieved by List,
+        // but that would likely require using session
         public ActionResult Details(int id)
         {
-            return View();
+            var foundPeopleRes = new Results();
+            var foundPerson = new person();
+            var searchMethod = "Search?id=";
+
+            var url = _baseUrl + searchMethod + id + "&" + _mode;
+            // get data from FellowshipOne API
+            HttpWebRequest req = (HttpWebRequest)WebRequest.Create(url);
+            HttpWebResponse res = (HttpWebResponse)req.GetResponse();
+            if (res.StatusCode != HttpStatusCode.OK)
+            {
+                // TODO: put error message on page
+                throw new WebException("No response or bad response from " + url);
+            }
+            else
+            {
+                // and put it in an object
+                XmlSerializer ser = new XmlSerializer(typeof(Results));
+                XmlReader reader = XmlReader.Create(url);
+                foundPeopleRes = (Results)ser.Deserialize(reader);
+                // get the one (there will only be one) person out of the result set
+                foundPerson = foundPeopleRes.people[0];
+                return View(foundPerson);
+            }
         }
 
         //
         // GET: /Person/List/joe+bob
+        // GET: /Person/List/1234567
 
-        public ActionResult List(string name)
+        public ActionResult List(string name = null, int? hsdid = null)
         {
-            ViewBag.SearchName = name;
+            var searchMethod = "";
+            var searchVal = "";
+            var url = "";
             var foundPeopleRes = new Results();
             var foundPeople = new List<person>();
-            var searchMethod = "Search?SearchFor=";
 
-            var url = _baseUrl + searchMethod + name + "&" + _mode;
+            // this allows us to search using a name or a household ID
+            if (name != null)
+            {
+                ViewBag.Message = "People matching \"" + name + "\"";
+                searchMethod = "Search?SearchFor=";
+                searchVal = name;
+            }
+            else if (hsdid != null)
+            {
+                ViewBag.Message = "Members of Household";
+                searchMethod = "Search?hsdid=";
+                searchVal = hsdid.ToString();
+            }
+            else
+            {
+                throw new ArgumentNullException("List needs a name or hsdid");
+            }            
+
+            url = _baseUrl + searchMethod + searchVal + "&" + _mode;
             // get data from FellowshipOne API
             HttpWebRequest req = (HttpWebRequest)WebRequest.Create(url);
             HttpWebResponse res = (HttpWebResponse)req.GetResponse();
@@ -62,7 +106,68 @@ namespace FellowshipTest.Controllers
                 return View(foundPeople);
             }
         }
+        /*
+                //
+                // GET: /Person/List/joe+bob
+                public ActionResult List(string name)
+                {
+                    ViewBag.Message = "People matching \""+name+"\"";
+                    var foundPeopleRes = new Results();
+                    var foundPeople = new List<person>();
+                    var searchMethod = "Search?SearchFor=";
 
+                    var url = _baseUrl + searchMethod + name + "&" + _mode;
+                    // get data from FellowshipOne API
+                    HttpWebRequest req = (HttpWebRequest)WebRequest.Create(url);
+                    HttpWebResponse res = (HttpWebResponse)req.GetResponse();
+                    if (res.StatusCode != HttpStatusCode.OK)
+                    {
+                        // TODO: put error message on page
+                        throw new WebException("No response or bad response from " + url);
+                    }
+                    else
+                    {
+                        // and put it in an object
+                        XmlSerializer ser = new XmlSerializer(typeof(Results));
+                        XmlReader reader = XmlReader.Create(url);
+                        foundPeopleRes = (Results)ser.Deserialize(reader);
+                        // prefer to pass a list of people rather than result set
+                        foundPeople = foundPeopleRes.people;
+                        return View(foundPeople);
+                    }
+                }
+                //
+                // GET: /Person/List/1234567
+
+                [ActionName("ListHsdid")]
+                public ActionResult List(int hsdid)
+                {
+                    ViewBag.Message = "Members of Household";
+                    var foundPeopleRes = new Results();
+                    var foundPeople = new List<person>();
+                    var searchMethod = "Search?hsdid=";
+
+                    var url = _baseUrl + searchMethod + hsdid + "&" + _mode;
+                    // get data from FellowshipOne API
+                    HttpWebRequest req = (HttpWebRequest)WebRequest.Create(url);
+                    HttpWebResponse res = (HttpWebResponse)req.GetResponse();
+                    if (res.StatusCode != HttpStatusCode.OK)
+                    {
+                        // TODO: put error message on page
+                        throw new WebException("No response or bad response from " + url);
+                    }
+                    else
+                    {
+                        // and put it in an object
+                        XmlSerializer ser = new XmlSerializer(typeof(Results));
+                        XmlReader reader = XmlReader.Create(url);
+                        foundPeopleRes = (Results)ser.Deserialize(reader);
+                        // prefer to pass a list of people rather than result set
+                        foundPeople = foundPeopleRes.people;
+                        return View(foundPeople);
+                    }
+                }
+        */
         //
         // GET: /Person/Create
 

@@ -1,0 +1,149 @@
+﻿@model person
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<table>
+    <tr>
+        <td>
+            <h2>
+                @Html.DisplayFor(model => model.prefix)
+
+                @Html.DisplayFor(model => model.firstName)
+
+                @if (Model.goesByName != "")
+                {
+                    @Html.DisplayFor(model => model.goesByName)
+                }
+        
+                @Html.DisplayFor(model => model.middleName)
+        
+                @Html.DisplayFor(model => model.lastName)
+            </h2>
+        </td>
+        <td>
+            <img src="@ViewData.Model.imageURI?mode=demo" alt="No photo on file" />
+        </td>
+    </tr>
+</table>
+
+<fieldset>
+    <legend>Details</legend>
+
+    <div class="display-label">
+        @Html.LabelFor(model => model.title)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.title)
+    </div>
+
+    <div class="display-label">
+        @Html.LabelFor(model => model.formerName)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.formerName)
+    </div>
+
+    <div class="display-label">
+        @Html.LabelFor(model => model.gender)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.gender)
+    </div>
+
+    <div class="display-label">
+        @Html.LabelFor(model => model.dateOfBirth)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.dateOfBirth)
+    </div>
+
+    <div class="display-label">
+        @Html.LabelFor(model => model.isAuthorized)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.isAuthorized)
+    </div>
+
+    <div class="display-label">
+        @Html.LabelFor(model => model.employer)    
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.employer)
+    </div>
+
+    <div class="display-label">
+        @Html.LabelFor(model => model.formerChurch)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.formerChurch)
+    </div>
+
+    <div class="display-label">
+        @Html.LabelFor(model => model.barCode)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.barCode)
+    </div>
+
+    <div class="display-label">
+        @Html.LabelFor(model => model.memberEnvelopeCode)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.memberEnvelopeCode)
+    </div>
+
+    <div class="display-label">
+        @Html.LabelFor(model => model.defaultTagComment)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.defaultTagComment)
+    </div>
+
+    <div class="display-label">
+        @Html.LabelFor(model => model.solicit)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.solicit)
+    </div>
+
+    <div class="display-label">
+        @Html.LabelFor(model => model.thank)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.thank)
+    </div>
+
+    <div class="display-label">
+        @Html.LabelFor(model => model.firstRecord)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.firstRecord)
+    </div>
+
+    <div class="display-label">
+        @Html.LabelFor(model => model.createdDate)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.createdDate)
+    </div>
+
+    <div class="display-label">
+        @Html.LabelFor(model => model.lastUpdatedDate)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.lastUpdatedDate)
+    </div>
+
+    <b>
+        <div class="display-label">
+            @Html.ActionLink("Household", "List", new { hsdid=Model.householdID })
+        </div>
+    </b>
+
+</fieldset>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id=Model.id }) |
+    @Html.ActionLink("Search Again", "Index")
+</p>

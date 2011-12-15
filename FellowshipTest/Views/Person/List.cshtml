@@ -1,43 +1,28 @@
 ﻿@model IEnumerable<person>
 
 @{
-    ViewBag.Title = "Details";
+    ViewBag.Title = "List";
 }
 
-<h2>People matching "@ViewBag.SearchName"</h2>
+<h2>@ViewBag.Message</h2>
 
 <fieldset>
     @foreach (var item in Model)
     {
-        <div class="display-field">
-            @Html.DisplayFor(model => item.prefix)
-        </div>
-
-        <div class="display-field">
+        <a href="Details/@item.id">
             @Html.DisplayFor(model => item.firstName)
-        </div>
 
-        if (item.goesByName != "")
-        {
-            <div class="display-field">
-                "@Html.DisplayFor(model => item.goesByName)"
-            </div>
-        }
+            @if (item.goesByName != "")
+            {
+                @Html.DisplayFor(model => item.goesByName)
+            }
         
-        <div class="display-field">
             @Html.DisplayFor(model => item.middleName)
-        </div>
         
-        <div class="display-field">
             @Html.DisplayFor(model => item.lastName)
-        </div>
 
-        <!--
-        <div class="display-field">
-            <img src="@item.imageURI?mode=demo" alt="No photo on file" />
-        </div>
-        -->
-        <br />
+            <br />
+        </a>
     }
 </fieldset>
 <p>
