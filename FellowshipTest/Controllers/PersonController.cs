@@ -7,40 +7,21 @@ using System.Net;
 using System.Xml.Serialization;
 using System.Xml;
 using System.IO;
+using System.Reflection;
 
 namespace FellowshipTest.Controllers
 {
     public class PersonController : Controller
     {
+        private string _baseUrl = "https://demo.fellowshiponeapi.com/v1/People/";
+        private string _mode = "mode=demo";
+
         //
         // GET: /Person/
 
         public ActionResult Index()
         {
-            // TODO: put this somewhere better
-            //var people = new List<person>();
-            people ppl;
-            var url = "https://demo.fellowshiponeapi.com/v1/Households/1551556/People?mode=demo";
-            // get data from FellowshipOne API
-            HttpWebRequest req = (HttpWebRequest) WebRequest.Create(url);
-            HttpWebResponse res = (HttpWebResponse) req.GetResponse();
-            if (res.StatusCode != HttpStatusCode.OK)
-            {
-                // TODO: put error message on page
-                throw new WebException("No response or bad response from " + url);
-            }
-            else
-            {
-                // and put it in an object
-                //XmlSerializer ser = new XmlSerializer(typeof(person));
-                XmlSerializer ser = new XmlSerializer(typeof(people));
-                XmlReader reader = XmlReader.Create(url);
-                //people = (List<person>)ser.Deserialize(reader);
-                //return View(people);
-                ppl = (people)ser.Deserialize(reader);
-                return View(ppl);
-
-            }
+            return View();
         }
 
         //
@@ -49,6 +30,37 @@ namespace FellowshipTest.Controllers
         public ActionResult Details(int id)
         {
             return View();
+        }
+
+        //
+        // GET: /Person/List/joe+bob
+
+        public ActionResult List(string name)
+        {
+            ViewBag.SearchName = name;
+            var foundPeopleRes = new Results();
+            var foundPeople = new List<person>();
+            var searchMethod = "Search?SearchFor=";
+
+            var url = _baseUrl + searchMethod + name + "&" + _mode;
+            // get data from FellowshipOne API
+            HttpWebRequest req = (HttpWebRequest)WebRequest.Create(url);
+            HttpWebResponse res = (HttpWebResponse)req.GetResponse();
+            if (res.StatusCode != HttpStatusCode.OK)
+            {
+                // TODO: put error message on page
+                throw new WebException("No response or bad response from " + url);
+            }
+            else
+            {
+                // and put it in an object
+                XmlSerializer ser = new XmlSerializer(typeof(Results));
+                XmlReader reader = XmlReader.Create(url);
+                foundPeopleRes = (Results)ser.Deserialize(reader);
+                // prefer to pass a list of people rather than result set
+                foundPeople = foundPeopleRes.people;
+                return View(foundPeople);
+            }
         }
 
         //
@@ -129,4 +141,19 @@ namespace FellowshipTest.Controllers
             }
         }
     }
+
+    // allows us to overload ActionResult methods
+    public class RequireRequestValueAttribute : ActionMethodSelectorAttribute
+    {
+        public RequireRequestValueAttribute(string valueName)
+        {
+            ValueName = valueName;
+        }
+        public override bool IsValidForRequest(ControllerContext controllerContext, MethodInfo methodInfo)
+        {
+            return (controllerContext.HttpContext.Request[ValueName] != null);
+        }
+        public string ValueName { get; private set; }
+    }
+
 }

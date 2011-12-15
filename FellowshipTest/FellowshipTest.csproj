@@ -67,6 +67,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\Results.cs" />
     <Compile Include="Models\Persons.cs" />
     <Compile Include="Models\People.cs">
       <DependentUpon>People.xsd</DependentUpon>
@@ -147,7 +148,7 @@
   <ItemGroup>
     <None Include="Models\People.xsd" />
     <Content Include="Views\Person\Index.cshtml" />
-    <Content Include="Views\Person\Copy of Index.cshtml" />
+    <Content Include="Views\Person\List.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Service References\" />

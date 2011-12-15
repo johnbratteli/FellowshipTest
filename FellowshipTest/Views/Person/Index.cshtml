@@ -1,76 +1,11 @@
-﻿@model people
-
-@{
-    ViewBag.Title = "List";
+﻿@{
+    ViewBag.Title = "People";
 }
-
-<h2>List</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @{Html.BeginForm("List", "Person", FormMethod.Get);}
+    @Html.TextBox("name")
+    <input type="submit" value="Find" />
+    @{Html.EndForm();}
 </p>
-<table>
-    <tr>
-        <th>
-            title
-        </th>
-        <th>
-            salutation
-        </th>
-        <th>
-            prefix
-        </th>
-        <th>
-            firstName
-        </th>
-        <th>
-            lastName
-        </th>
-        <th>
-            suffix
-        </th>
-        <th>
-            middleName
-        </th>
-        <th>
-            goesByName
-        </th>
-        <th></th>
-    </tr>
 
-@foreach (var item in Model.members) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.title)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.salutation)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.prefix)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.firstName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.lastName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.suffix)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.middleName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.goesByName)
-        </td>
-       
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.id }) |
-            @Html.ActionLink("Details", "Details", new { id=item.id }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.id })
-        </td>
-    </tr>
-}
-
-</table>

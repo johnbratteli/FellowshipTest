@@ -44,7 +44,8 @@ public partial class person {
     
     private System.Nullable<gender> genderField;
     
-    private System.Nullable<System.DateTime> dateOfBirthField;
+    //private System.Nullable<System.DateTime> dateOfBirthField;
+    private string dateOfBirthField;
     
     private System.Nullable<maritalStatus> maritalStatusField;
     
@@ -76,13 +77,16 @@ public partial class person {
     
     private string thankField;
     
-    private System.Nullable<System.DateTime> firstRecordField;
+    //private System.Nullable<System.DateTime> firstRecordField;
+    private string firstRecordField;
     
     private object lastMatchDateField;
     
-    private System.Nullable<System.DateTime> createdDateField;
-    
-    private System.Nullable<System.DateTime> lastUpdatedDateField;
+    //private System.Nullable<System.DateTime> createdDateField;
+    private string createdDateField;
+
+    //private System.Nullable<System.DateTime> lastUpdatedDateField;
+    private string lastUpdatedDateField;
     
     private string uriField;
     
@@ -98,13 +102,15 @@ public partial class person {
     
     private string householdIDField;
     
+    /*
     public person() {
         this.dateOfBirthField = new System.DateTime(0);
         this.firstRecordField = new System.DateTime(0);
         this.createdDateField = new System.DateTime(0);
         this.lastUpdatedDateField = new System.DateTime(0);
     }
-    
+    */
+
     /// <remarks/>
     [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
     public string title {
@@ -214,6 +220,7 @@ public partial class person {
         }
     }
     
+    /* working around problem with deserializing datetimes
     /// <remarks/>
     [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
     public System.Nullable<System.DateTime> dateOfBirth {
@@ -221,6 +228,19 @@ public partial class person {
             return this.dateOfBirthField;
         }
         set {
+            this.dateOfBirthField = value;
+        }
+    }
+    */
+    [System.Xml.Serialization.XmlElementAttribute(IsNullable = true)]
+    public string dateOfBirth
+    {
+        get
+        {
+            return this.dateOfBirthField;
+        }
+        set
+        {
             this.dateOfBirthField = value;
         }
     }
@@ -385,6 +405,7 @@ public partial class person {
         }
     }
     
+    /*
     /// <remarks/>
     [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
     public System.Nullable<System.DateTime> firstRecord {
@@ -395,7 +416,20 @@ public partial class person {
             this.firstRecordField = value;
         }
     }
-    
+    */
+    [System.Xml.Serialization.XmlElementAttribute(IsNullable = true)]
+    public string firstRecord
+    {
+        get
+        {
+            return this.firstRecordField;
+        }
+        set
+        {
+            this.firstRecordField = value;
+        }
+    }
+
     /// <remarks/>
     // CODEGEN Warning: 'default' attribute supported only for primitive types.  Ignoring default='0001-01-01T00:00:00' attribute.
     [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
@@ -408,6 +442,7 @@ public partial class person {
         }
     }
     
+    /*
     /// <remarks/>
     [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
     public System.Nullable<System.DateTime> createdDate {
@@ -418,7 +453,21 @@ public partial class person {
             this.createdDateField = value;
         }
     }
-    
+    */
+    [System.Xml.Serialization.XmlElementAttribute(IsNullable = true)]
+    public string createdDate
+    {
+        get
+        {
+            return this.createdDateField;
+        }
+        set
+        {
+            this.createdDateField = value;
+        }
+    }
+
+    /*
     /// <remarks/>
     [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
     public System.Nullable<System.DateTime> lastUpdatedDate {
@@ -426,6 +475,19 @@ public partial class person {
             return this.lastUpdatedDateField;
         }
         set {
+            this.lastUpdatedDateField = value;
+        }
+    }
+    */
+    [System.Xml.Serialization.XmlElementAttribute(IsNullable = true)]
+    public string lastUpdatedDate
+    {
+        get
+        {
+            return this.lastUpdatedDateField;
+        }
+        set
+        {
             this.lastUpdatedDateField = value;
         }
     }
