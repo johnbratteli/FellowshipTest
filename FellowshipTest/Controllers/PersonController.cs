@@ -74,9 +74,17 @@ namespace FellowshipTest.Controllers
             // this allows us to search using a name or a household ID
             if (name != null)
             {
-                ViewBag.Message = "People matching \"" + name + "\"";
-                searchMethod = "Search?SearchFor=";
-                searchVal = name;
+                if (name == "")
+                {
+                    // don't want to search for a blank name
+                    return RedirectToAction("Index");
+                }
+                else
+                {
+                    ViewBag.Message = "People matching \"" + name + "\"";
+                    searchMethod = "Search?SearchFor=";
+                    searchVal = name;
+                }
             }
             else if (hsdid != null)
             {
