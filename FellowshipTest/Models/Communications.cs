@@ -61,6 +61,27 @@ namespace FellowshipTest.Models
             this.lastUpdatedDateField = new System.DateTime(0);
         }
         */
+
+        // default constructor for no-context communication
+        public Communication() 
+        {
+            this.person = new Person();
+            this.household = new Household();
+            this.communicationType = new communicationType();
+            this.communicationGeneralType = new communicationGeneralType();
+        }
+
+        // constructor for communication with person context
+        public Communication(string personID, string personURI, communicationType type, communicationGeneralType gType)
+        {
+            this.person = new Person();
+            person.id = personID;
+            person.uri = personURI;
+            this.household = new Household();
+            this.communicationType = type;
+            this.communicationGeneralType = gType;
+        }
+
         /// <remarks/>
         public Household household
         {

@@ -93,6 +93,8 @@ namespace FellowshipTest.Models
         {
             this.person = new Person();
             this.addressType = new AddressType();
+            this.household = new Household();
+
         }
 
         // constructor for address with person context
@@ -102,16 +104,7 @@ namespace FellowshipTest.Models
             this.person.id = personID;
             this.person.uri = personURI;
             this.addressType = type;
-        }
-
-        public Address(FormCollection collection)
-        {
-            // the current object should look like source when we're done
-            Address source = (Address) Utility.constructorCollectionHelper(collection, typeof(Address));
-            foreach (var pInfo in this.GetType().GetProperties())
-            {
-                pInfo.SetValue(this, pInfo.GetValue(source, null), null);
-            }
+            this.household = new Household();
         }
 
         /// <remarks/>

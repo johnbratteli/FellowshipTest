@@ -1,134 +1,135 @@
 ﻿@model IEnumerable<FellowshipTest.Models.Address>
 
 <fieldset>
-
-    @foreach (var item in Model)
+    
+    @foreach (var addr in Model)
     {
+        var item = (FellowshipTest.ViewModels.AddressView) addr;
         <div class="display-label">
-            @Html.LabelFor(model => item.address1)
+            @Html.LabelFor(model => item.Addr.address1)
         </div>
         <div class="display-field">
-            @Html.DisplayFor(model => item.address1)
+            @Html.DisplayFor(model => item.Addr.address1)
         </div>
 
         <div class="display-label">
-            @Html.LabelFor(model => item.address2)
+            @Html.LabelFor(model => item.Addr.address2)
         </div>
         <div class="display-field">
-            @Html.DisplayFor(model => item.address2)
+            @Html.DisplayFor(model => item.Addr.address2)
         </div>
 
         <div class="display-label">
-            @Html.LabelFor(model => item.address3)
+            @Html.LabelFor(model => item.Addr.address3)
         </div>
         <div class="display-field">
-            @Html.DisplayFor(model => item.address3)
+            @Html.DisplayFor(model => item.Addr.address3)
         </div>
 
         <div class="display-label">
-            @Html.LabelFor(model => item.city)
+            @Html.LabelFor(model => item.Addr.city)
         </div>
         <div class="display-field">
-            @Html.DisplayFor(model => item.city)
+            @Html.DisplayFor(model => item.Addr.city)
         </div>
 
         <div class="display-label">
-            @Html.LabelFor(model => item.postalCode)
+            @Html.LabelFor(model => item.Addr.postalCode)
         </div>
         <div class="display-field">
-            @Html.DisplayFor(model => item.postalCode)
+            @Html.DisplayFor(model => item.Addr.postalCode)
         </div>
 
         <div class="display-label">
-            @Html.LabelFor(model => item.county)
+            @Html.LabelFor(model => item.Addr.county)
         </div>
         <div class="display-field">
-            @Html.DisplayFor(model => item.county)
+            @Html.DisplayFor(model => item.Addr.county)
         </div>
 
         <div class="display-label">
-            @Html.LabelFor(model => item.country)
+            @Html.LabelFor(model => item.Addr.country)
         </div>
         <div class="display-field">
-            @Html.DisplayFor(model => item.country)
+            @Html.DisplayFor(model => item.Addr.country)
         </div>
 
         <div class="display-label">
-            @Html.LabelFor(model => item.stProvince)
+            @Html.LabelFor(model => item.Addr.stProvince)
         </div>
         <div class="display-field">
-            @Html.DisplayFor(model => item.stProvince)
+            @Html.DisplayFor(model => item.Addr.stProvince)
         </div>
 
         <div class="display-label">
-            @Html.LabelFor(model => item.carrierRoute)
+            @Html.LabelFor(model => item.Addr.carrierRoute)
         </div>
         <div class="display-field">
-            @Html.DisplayFor(model => item.carrierRoute)
+            @Html.DisplayFor(model => item.Addr.carrierRoute)
         </div>
 
         <div class="display-label">
-            @Html.LabelFor(model => item.deliveryPoint)
+            @Html.LabelFor(model => item.Addr.deliveryPoint)
         </div>
         <div class="display-field">
-            @Html.DisplayFor(model => item.deliveryPoint)
+            @Html.DisplayFor(model => item.Addr.deliveryPoint)
         </div>
 
         <div class="display-label">
-            @Html.LabelFor(model => item.addressDate)
+            @Html.LabelFor(model => item.Addr.addressDate)
         </div>
         <div class="display-field">
-            @Html.DisplayFor(model => item.addressDate)
+            @Html.DisplayFor(model => item.Addr.addressDate)
         </div>
 
         <div class="display-label">
-            @Html.LabelFor(model => item.addressComment)
+            @Html.LabelFor(model => item.Addr.addressComment)
         </div>
         <div class="display-field">
-            @Html.DisplayFor(model => item.addressComment)
+            @Html.DisplayFor(model => item.Addr.addressComment)
         </div>
 
         <div class="display-label">
-            @Html.LabelFor(model => item.uspsVerified)
+            @Html.LabelFor(model => item.Addr.uspsVerified)
         </div>
         <div class="display-field">
-            @Html.DisplayFor(model => item.uspsVerified)
+            @Html.DisplayFor(model => item.Addr.uspsVerified)
         </div>
 
         <div class="display-label">
-            @Html.LabelFor(model => item.addressVerifiedDate)
+            @Html.LabelFor(model => item.Addr.addressVerifiedDate)
         </div>
         <div class="display-field">
-            @Html.DisplayFor(model => item.addressVerifiedDate)
+            @Html.DisplayFor(model => item.Addr.addressVerifiedDate)
         </div>
 
         <div class="display-label">
-            @Html.LabelFor(model => item.lastVerificationAttemptDate)
+            @Html.LabelFor(model => item.Addr.lastVerificationAttemptDate)
         </div>
         <div class="display-field">
-            @Html.DisplayFor(model => item.lastVerificationAttemptDate)
+            @Html.DisplayFor(model => item.Addr.lastVerificationAttemptDate)
         </div>
 
         <div class="display-label">
-            @Html.LabelFor(model => item.createdDate)
+            @Html.LabelFor(model => item.Addr.createdDate)
         </div>
         <div class="display-field">
-            @Html.DisplayFor(model => item.createdDate)
+            @Html.DisplayFor(model => item.Addr.createdDate)
         </div>
 
         <div class="display-label">
-            @Html.LabelFor(model => item.lastUpdatedDate)
+            @Html.LabelFor(model => item.Addr.lastUpdatedDate)
         </div>
         <div class="display-field">
-            @Html.DisplayFor(model => item.lastUpdatedDate)
+            @Html.DisplayFor(model => item.Addr.lastUpdatedDate)
         </div>
 
         <div class="display-label">
-            @Html.LabelFor(model => item.uri)
+            @Html.LabelFor(model => item.Addr.uri)
         </div>
         <div class="display-field">
-            @Html.DisplayFor(model => item.uri)
+            @Html.DisplayFor(model => item.Addr.uri)
         </div>
-        @Html.ActionLink("Edit", "Edit", new { id = item.id })
+        @Html.ActionLink("Edit", "Edit", new { id = item.Addr.id })
     }
 </fieldset>

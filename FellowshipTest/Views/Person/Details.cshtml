@@ -1,5 +1,7 @@
 ﻿@model FellowshipTest.Models.Person
 
+@using FellowshipTest.Models;
+@using FellowshipTest.ViewModels;
 @{
     ViewBag.Title = "Details";
 }
@@ -62,9 +64,17 @@
     <div class="display-label" style="display:inline; margin: 1em 0 0 0">
         @Html.LabelFor(model => model.addresses)
     </div>
-    @Html.ActionLink("Add Address", "CreateAddress", new { personID=Model.householdID })
+    @Html.ActionLink("Add Address", "Create", "Address", new { personID = Model.id }, null)
     <div class="display-field">
         @Html.DisplayFor(model => model.addresses)
+    </div>
+
+    <div class="display-label" style="display:inline; margin: 1em 0 0 0">
+        @Html.LabelFor(model => model.communications)
+    </div>
+    @Html.ActionLink("Add Method", "Create", "Communication", new { personID = Model.id }, null)
+    <div class="display-field">
+        @Html.DisplayFor(model => model.communications)
     </div>
 
     <div class="display-label">
@@ -144,14 +154,13 @@
         @Html.DisplayFor(model => model.lastUpdatedDate)
     </div>
 
-    <b>
-        <div class="display-label">
-            @Html.ActionLink("Household", "List", new { hsdid=Model.householdID })
-        </div>
-    </b>
+    <div class="display-label">
+        <b>@Html.ActionLink("Household", "List", new { hsdid = Model.householdID })</b>
+    </div>
+
 
 </fieldset>
 <p>
-    @Html.ActionLink("Edit", "Edit", new { id=Model.id }) |
+    <!--@Html.ActionLink("Edit", "Edit", new { id=Model.id }) |-->
     @Html.ActionLink("Search Again", "Index")
 </p>

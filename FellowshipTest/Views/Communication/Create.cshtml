@@ -1,0 +1,85 @@
+﻿@model FellowshipTest.ViewModels.CommunicationView
+
+@{
+    ViewBag.Title = "Create";
+}
+
+<h2>Create</h2>
+
+<script src="@Url.Content("~/Scripts/jquery.validate.min.js")" type="text/javascript"></script>
+<script src="@Url.Content("~/Scripts/jquery.validate.unobtrusive.min.js")" type="text/javascript"></script>
+
+@using (Html.BeginForm()) {
+    @Html.ValidationSummary(true)
+    <fieldset>
+        <legend>Communication</legend>
+
+        @Html.HiddenFor(model => model.Comm.person.id)
+        @Html.HiddenFor(model => model.Comm.person.uri)
+        @Html.HiddenFor(model => model.Comm.communicationType)
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Comm.communicationValue)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Comm.communicationValue)
+            @Html.ValidationMessageFor(model => model.Comm.communicationValue)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Comm.searchCommunicationValue)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Comm.searchCommunicationValue)
+            @Html.ValidationMessageFor(model => model.Comm.searchCommunicationValue)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Comm.listed)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Comm.listed)
+            @Html.ValidationMessageFor(model => model.Comm.listed)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Comm.communicationComment)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Comm.communicationComment)
+            @Html.ValidationMessageFor(model => model.Comm.communicationComment)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Comm.createdDate)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Comm.createdDate)
+            @Html.ValidationMessageFor(model => model.Comm.createdDate)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Comm.lastUpdatedDate)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Comm.lastUpdatedDate)
+            @Html.ValidationMessageFor(model => model.Comm.lastUpdatedDate)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Comm.uri)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Comm.uri)
+            @Html.ValidationMessageFor(model => model.Comm.uri)
+        </div>
+
+        <p>
+            <input type="submit" value="Create" />
+        </p>
+    </fieldset>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>

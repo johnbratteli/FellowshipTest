@@ -1,0 +1,38 @@
+﻿@model IEnumerable<FellowshipTest.Models.Communication>
+
+<fieldset>
+    
+    @foreach (var comm in Model)
+    {
+        var item = (FellowshipTest.ViewModels.CommunicationView)comm;
+        <div class="display-label">communicationValue</div>
+        <div class="display-field">
+            @Html.DisplayFor(model => item.Comm.communicationValue)
+        </div>
+
+        <div class="display-label">searchCommunicationValue</div>
+        <div class="display-field">
+            @Html.DisplayFor(model => item.Comm.searchCommunicationValue)
+        </div>
+
+        <div class="display-label">listed</div>
+        <div class="display-field">
+            @Html.DisplayFor(model => item.Comm.listed)
+        </div>
+
+        <div class="display-label">communicationComment</div>
+        <div class="display-field">
+            @Html.DisplayFor(model => item.Comm.communicationComment)
+        </div>
+
+        <div class="display-label">createdDate</div>
+        <div class="display-field">
+            @Html.DisplayFor(model => item.Comm.createdDate)
+        </div>
+
+        <div class="display-label">lastUpdatedDate</div>
+        <div class="display-field">
+            @Html.DisplayFor(model => item.Comm.lastUpdatedDate)
+        </div>
+    }
+</fieldset>

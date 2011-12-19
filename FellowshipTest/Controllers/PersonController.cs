@@ -10,6 +10,7 @@ using System.IO;
 using System.Reflection;
 using System.Text;
 using FellowshipTest.Models;
+using FellowshipTest.ViewModels;
 
 namespace FellowshipTest.Controllers
 {
@@ -254,20 +255,28 @@ namespace FellowshipTest.Controllers
         public ActionResult CreateAddress(string personID)
         {
             var personURI = _baseUrl + personID;
+            var newMethod = "/Addresses/new";
+         
             // TODO: figure out how to assign this correctly
             var type = new AddressType(1, "Primary", "https://demo.fellowshiponeapi.com/v1/Addresses/AddressTypes/1");
-            if (personID == null || personURI == null || type == null)
+
+            var url = _baseUrl + personID + newMethod + "?" + _mode;
+            // get new address from FellowshipOne API
+            HttpWebRequest req = (HttpWebRequest)WebRequest.Create(url);
+            HttpWebResponse res = (HttpWebResponse)req.GetResponse();
+            if (res.StatusCode != HttpStatusCode.OK)
             {
-                throw new ArgumentNullException("I hate this!");
+                // TODO: put error message on page
+                throw new WebException("No response or bad response from " + url);
             }
             else
             {
-                //var mod = new Address(personID, personURI, type);
-                var mod = new Address();
-                mod.person.id = personID;
-                mod.person.uri = personURI;
-                mod.addressType = type;
-                return View(mod);
+                // and put it in an object
+                XmlSerializer ser = new XmlSerializer(typeof(Address));
+                XmlReader reader = XmlReader.Create(url);
+                var addr = (Address)ser.Deserialize(reader);
+                var addrView = (AddressView) addr;
+                return View(addrView);
             }
         }
         
@@ -275,32 +284,17 @@ namespace FellowshipTest.Controllers
         // POST: /Person/CreateAddress
 
         [HttpPost]
-        //public ActionResult CreateAddresss(Address addr)
-        public ActionResult CreateAddress(FormCollection collection)
+        public ActionResult CreateAddresss(AddressView addrView)
         {
-            Address addr = new Address(collection);
-
-            /*
-            addr.person.id = collection["person.id"];
-            collection.Remove("person.id");
-            addr.person.uri = collection["person.uri"];
-            collection.Remove("person.uri");
-            addr.addressType.id = collection["addressType.id"];
-            collection.Remove("person.id");
-            addr.addressType.name = collection["addressType.name"];
-            collection.Remove("addressType.name");
-            addr.addressType.uri = collection["addressType.uri"];
-            */
-            //Address addr = (Address)collection;
             var postMethod = "Addresses";
-            var personID = addr.person.id;
+            var personID = addrView.Addr.person.id;
             var url = _baseUrl + personID + postMethod;
             var xmlString = new StringBuilder();
 
             // serialze address object to xml
             XmlWriter writer = XmlWriter.Create(xmlString);
             XmlSerializer ser = new XmlSerializer(typeof(Address));
-            ser.Serialize(writer, addr);
+            ser.Serialize(writer, addrView.Addr);
 
             try
             {

@@ -339,6 +339,7 @@ namespace FellowshipTest.Models
 
         /// <remarks/>
         [Display(Name = "Communication Methods")]
+        [UIHint("Communication")]
         public List<Communication> communications
         {
             get
