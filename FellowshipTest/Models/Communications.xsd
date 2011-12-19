@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+	<xs:element name="communication">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="household"/>
+				<xs:element ref="person"/>
+				<xs:element ref="communicationType"/>
+				<xs:element ref="communicationGeneralType"/>
+				<xs:element ref="communicationValue"/>
+				<xs:element ref="searchCommunicationValue"/>
+				<xs:element ref="listed"/>
+				<xs:element ref="communicationComment"/>
+				<xs:element ref="createdDate"/>
+				<xs:element ref="lastUpdatedDate"/>
+			</xs:sequence>
+			<xs:attribute name="uri" type="xs:anyURI" use="optional"/>
+			<xs:attribute name="id">
+				<xs:simpleType>
+					<xs:union memberTypes="xs:integer">
+						<xs:simpleType>
+							<xs:restriction base="xs:string">
+								<xs:enumeration value=""/>
+							</xs:restriction>
+						</xs:simpleType>
+					</xs:union>
+				</xs:simpleType>
+			</xs:attribute>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="searchCommunicationValue">
+		<xs:simpleType>
+			<xs:restriction base="xs:string">
+				<xs:maxLength value="50"/>
+			</xs:restriction>
+		</xs:simpleType>
+	</xs:element>
+	<xs:element name="person">
+		<xs:complexType>
+			<xs:attribute name="uri" type="xs:anyURI" use="optional"/>
+			<xs:attribute name="id">
+				<xs:simpleType>
+					<xs:union memberTypes="xs:integer">
+						<xs:simpleType>
+							<xs:restriction base="xs:string">
+								<xs:enumeration value=""/>
+							</xs:restriction>
+						</xs:simpleType>
+					</xs:union>
+				</xs:simpleType>
+			</xs:attribute>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="listed" type="xs:boolean"/>
+	<xs:element name="lastUpdatedDate" type="xs:dateTime" default="0001-01-01T00:00:00" nillable="true"/>
+	<xs:element name="household">
+		<xs:complexType>
+			<xs:attribute name="uri" type="xs:anyURI" use="optional"/>
+			<xs:attribute name="id">
+				<xs:simpleType>
+					<xs:union memberTypes="xs:integer">
+						<xs:simpleType>
+							<xs:restriction base="xs:string">
+								<xs:enumeration value=""/>
+							</xs:restriction>
+						</xs:simpleType>
+					</xs:union>
+				</xs:simpleType>
+			</xs:attribute>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="createdDate" type="xs:dateTime" default="0001-01-01T00:00:00" nillable="true"/>
+	<xs:element name="communicationValue">
+		<xs:simpleType>
+			<xs:restriction base="xs:string">
+				<xs:maxLength value="50"/>
+			</xs:restriction>
+		</xs:simpleType>
+	</xs:element>
+	<xs:element name="communicationType">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="name"/>
+			</xs:sequence>
+			<xs:attribute name="uri" type="xs:anyURI" use="optional"/>
+			<xs:attribute name="id" type="xs:integer" use="required"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="communicationGeneralType">
+		<xs:simpleType>
+			<xs:restriction base="xs:string">
+				<xs:enumeration value=""/>
+				<xs:enumeration value="Email"/>
+				<xs:enumeration value="Telephone"/>
+				<xs:enumeration value="SocialMedia"/>
+				<xs:enumeration value="Web"/>
+			</xs:restriction>
+		</xs:simpleType>
+	</xs:element>
+	<xs:element name="communicationComment">
+		<xs:simpleType>
+			<xs:restriction base="xs:string">
+				<xs:maxLength value="200"/>
+			</xs:restriction>
+		</xs:simpleType>
+	</xs:element>
+</xs:schema>

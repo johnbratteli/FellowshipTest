@@ -1,0 +1,174 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+	<xs:element name="address">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="household"/>
+				<xs:element ref="person"/>
+				<xs:element ref="addressType"/>
+				<xs:element ref="address1"/>
+				<xs:element ref="address2"/>
+				<xs:element ref="address3"/>
+				<xs:element ref="city"/>
+				<xs:element ref="postalCode"/>
+				<xs:element ref="county"/>
+				<xs:element ref="country"/>
+				<xs:element ref="stProvince"/>
+				<xs:element ref="carrierRoute"/>
+				<xs:element ref="deliveryPoint"/>
+				<xs:element ref="addressDate"/>
+				<xs:element ref="addressComment"/>
+				<xs:element ref="uspsVerified"/>
+				<xs:element ref="addressVerifiedDate"/>
+				<xs:element ref="lastVerificationAttemptDate"/>
+				<xs:element ref="createdDate"/>
+				<xs:element ref="lastUpdatedDate"/>
+			</xs:sequence>
+			<xs:attribute name="uri" type="xs:anyURI" use="optional"/>
+			<xs:attribute name="id">
+				<xs:simpleType>
+					<xs:union memberTypes="xs:integer">
+						<xs:simpleType>
+							<xs:restriction base="xs:string">
+								<xs:enumeration value=""/>
+							</xs:restriction>
+						</xs:simpleType>
+					</xs:union>
+				</xs:simpleType>
+			</xs:attribute>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="uspsVerified" nillable="true">
+		<xs:simpleType>
+			<xs:union memberTypes="xs:boolean">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:enumeration value=""/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:union>
+		</xs:simpleType>
+	</xs:element>
+	<xs:element name="stProvince" nillable="true">
+		<xs:simpleType>
+			<xs:restriction base="xs:string">
+				<xs:maxLength value="125"/>
+			</xs:restriction>
+		</xs:simpleType>
+	</xs:element>
+	<xs:element name="postalCode" nillable="true">
+		<xs:simpleType>
+			<xs:restriction base="xs:string">
+				<xs:maxLength value="10"/>
+				<xs:minLength value="0"/>
+			</xs:restriction>
+		</xs:simpleType>
+	</xs:element>
+	<xs:element name="person">
+		<xs:complexType>
+			<xs:attribute name="uri" type="xs:anyURI" use="optional"/>
+			<xs:attribute name="id">
+				<xs:simpleType>
+					<xs:union memberTypes="xs:integer">
+						<xs:simpleType>
+							<xs:restriction base="xs:string">
+								<xs:enumeration value=""/>
+							</xs:restriction>
+						</xs:simpleType>
+					</xs:union>
+				</xs:simpleType>
+			</xs:attribute>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="lastVerificationAttemptDate" type="xs:dateTime" default="0001-01-01T00:00:00" nillable="true"/>
+	<xs:element name="lastUpdatedDate" type="xs:dateTime" default="0001-01-01T00:00:00" nillable="true"/>
+	<xs:element name="household">
+		<xs:complexType>
+			<xs:attribute name="uri" type="xs:anyURI" use="optional"/>
+			<xs:attribute name="id">
+				<xs:simpleType>
+					<xs:union memberTypes="xs:integer">
+						<xs:simpleType>
+							<xs:restriction base="xs:string">
+								<xs:enumeration value=""/>
+							</xs:restriction>
+						</xs:simpleType>
+					</xs:union>
+				</xs:simpleType>
+			</xs:attribute>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="deliveryPoint" nillable="true">
+		<xs:simpleType>
+			<xs:restriction base="xs:string">
+				<xs:maxLength value="2"/>
+			</xs:restriction>
+		</xs:simpleType>
+	</xs:element>
+	<xs:element name="createdDate" type="xs:dateTime" default="0001-01-01T00:00:00" nillable="true"/>
+	<xs:element name="county" nillable="true">
+		<xs:simpleType>
+			<xs:restriction base="xs:string"/>
+		</xs:simpleType>
+	</xs:element>
+	<xs:element name="country" nillable="true">
+		<xs:simpleType>
+			<xs:restriction base="xs:string">
+				<xs:maxLength value="20"/>
+			</xs:restriction>
+		</xs:simpleType>
+	</xs:element>
+	<xs:element name="city" nillable="true">
+		<xs:simpleType>
+			<xs:restriction base="xs:string">
+				<xs:maxLength value="30"/>
+			</xs:restriction>
+		</xs:simpleType>
+	</xs:element>
+	<xs:element name="carrierRoute" nillable="true">
+		<xs:simpleType>
+			<xs:restriction base="xs:string">
+				<xs:maxLength value="7"/>
+			</xs:restriction>
+		</xs:simpleType>
+	</xs:element>
+	<xs:element name="addressVerifiedDate" type="xs:dateTime" default="0001-01-01T00:00:00" nillable="true"/>
+	<xs:element name="addressType">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="name"/>
+			</xs:sequence>
+			<xs:attribute name="uri" type="xs:anyURI" use="optional"/>
+			<xs:attribute name="id" type="xs:integer" use="required"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="addressDate" type="xs:dateTime" default="0001-01-01T00:00:00" nillable="true"/>
+	<xs:element name="addressComment" nillable="true">
+		<xs:simpleType>
+			<xs:restriction base="xs:string">
+				<xs:maxLength value="200"/>
+			</xs:restriction>
+		</xs:simpleType>
+	</xs:element>
+	<xs:element name="address3" nillable="true">
+		<xs:simpleType>
+			<xs:restriction base="xs:string">
+				<xs:maxLength value="40"/>
+			</xs:restriction>
+		</xs:simpleType>
+	</xs:element>
+	<xs:element name="address2" nillable="true">
+		<xs:simpleType>
+			<xs:restriction base="xs:string">
+				<xs:maxLength value="40"/>
+			</xs:restriction>
+		</xs:simpleType>
+	</xs:element>
+	<xs:element name="address1" nillable="false">
+		<xs:simpleType>
+			<xs:restriction base="xs:string">
+				<xs:maxLength value="40"/>
+			</xs:restriction>
+		</xs:simpleType>
+	</xs:element>
+</xs:schema>

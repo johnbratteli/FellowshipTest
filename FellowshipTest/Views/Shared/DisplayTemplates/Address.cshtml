@@ -1,0 +1,134 @@
+﻿@model IEnumerable<FellowshipTest.Models.Address>
+
+<fieldset>
+
+    @foreach (var item in Model)
+    {
+        <div class="display-label">
+            @Html.LabelFor(model => item.address1)
+        </div>
+        <div class="display-field">
+            @Html.DisplayFor(model => item.address1)
+        </div>
+
+        <div class="display-label">
+            @Html.LabelFor(model => item.address2)
+        </div>
+        <div class="display-field">
+            @Html.DisplayFor(model => item.address2)
+        </div>
+
+        <div class="display-label">
+            @Html.LabelFor(model => item.address3)
+        </div>
+        <div class="display-field">
+            @Html.DisplayFor(model => item.address3)
+        </div>
+
+        <div class="display-label">
+            @Html.LabelFor(model => item.city)
+        </div>
+        <div class="display-field">
+            @Html.DisplayFor(model => item.city)
+        </div>
+
+        <div class="display-label">
+            @Html.LabelFor(model => item.postalCode)
+        </div>
+        <div class="display-field">
+            @Html.DisplayFor(model => item.postalCode)
+        </div>
+
+        <div class="display-label">
+            @Html.LabelFor(model => item.county)
+        </div>
+        <div class="display-field">
+            @Html.DisplayFor(model => item.county)
+        </div>
+
+        <div class="display-label">
+            @Html.LabelFor(model => item.country)
+        </div>
+        <div class="display-field">
+            @Html.DisplayFor(model => item.country)
+        </div>
+
+        <div class="display-label">
+            @Html.LabelFor(model => item.stProvince)
+        </div>
+        <div class="display-field">
+            @Html.DisplayFor(model => item.stProvince)
+        </div>
+
+        <div class="display-label">
+            @Html.LabelFor(model => item.carrierRoute)
+        </div>
+        <div class="display-field">
+            @Html.DisplayFor(model => item.carrierRoute)
+        </div>
+
+        <div class="display-label">
+            @Html.LabelFor(model => item.deliveryPoint)
+        </div>
+        <div class="display-field">
+            @Html.DisplayFor(model => item.deliveryPoint)
+        </div>
+
+        <div class="display-label">
+            @Html.LabelFor(model => item.addressDate)
+        </div>
+        <div class="display-field">
+            @Html.DisplayFor(model => item.addressDate)
+        </div>
+
+        <div class="display-label">
+            @Html.LabelFor(model => item.addressComment)
+        </div>
+        <div class="display-field">
+            @Html.DisplayFor(model => item.addressComment)
+        </div>
+
+        <div class="display-label">
+            @Html.LabelFor(model => item.uspsVerified)
+        </div>
+        <div class="display-field">
+            @Html.DisplayFor(model => item.uspsVerified)
+        </div>
+
+        <div class="display-label">
+            @Html.LabelFor(model => item.addressVerifiedDate)
+        </div>
+        <div class="display-field">
+            @Html.DisplayFor(model => item.addressVerifiedDate)
+        </div>
+
+        <div class="display-label">
+            @Html.LabelFor(model => item.lastVerificationAttemptDate)
+        </div>
+        <div class="display-field">
+            @Html.DisplayFor(model => item.lastVerificationAttemptDate)
+        </div>
+
+        <div class="display-label">
+            @Html.LabelFor(model => item.createdDate)
+        </div>
+        <div class="display-field">
+            @Html.DisplayFor(model => item.createdDate)
+        </div>
+
+        <div class="display-label">
+            @Html.LabelFor(model => item.lastUpdatedDate)
+        </div>
+        <div class="display-field">
+            @Html.DisplayFor(model => item.lastUpdatedDate)
+        </div>
+
+        <div class="display-label">
+            @Html.LabelFor(model => item.uri)
+        </div>
+        <div class="display-field">
+            @Html.DisplayFor(model => item.uri)
+        </div>
+        @Html.ActionLink("Edit", "Edit", new { id = item.id })
+    }
+</fieldset>

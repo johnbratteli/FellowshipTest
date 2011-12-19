@@ -1,4 +1,4 @@
-﻿@model person
+﻿@model FellowshipTest.Models.Person
 
 @{
     ViewBag.Title = "Details";
@@ -57,6 +57,14 @@
     </div>
     <div class="display-field">
         @Html.DisplayFor(model => model.dateOfBirth)
+    </div>
+
+    <div class="display-label" style="display:inline; margin: 1em 0 0 0">
+        @Html.LabelFor(model => model.addresses)
+    </div>
+    @Html.ActionLink("Add Address", "CreateAddress", new { personID=Model.householdID })
+    <div class="display-field">
+        @Html.DisplayFor(model => model.addresses)
     </div>
 
     <div class="display-label">

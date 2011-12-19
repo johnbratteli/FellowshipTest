@@ -1,87 +1,91 @@
 ﻿using System.Collections.Generic;
 using System.Xml.Serialization;
 
-[System.Serializable()]
-[System.Diagnostics.DebuggerStepThrough()]
-[System.ComponentModel.DesignerCategoryAttribute("code")]
-//[System.Xml.Serialization.XmlTypeAttribute(AnonymousType = true)]
-[XmlRoot(ElementName="results", Namespace = "", IsNullable = false)]
-public partial class Results
+namespace FellowshipTest.Models
 {
 
-    private List<person> peopleField;
-
-    private int countField;
-
-    private int pageNumberField;
-
-    private int totalRecordsField;
-
-    private int additionalPagesField;
-
-    //[XmlElementAttribute(IsNullable = false)]
-    [XmlElement(ElementName="person", Type=(typeof(person)), IsNullable=false)]
-    public List<person> people
+    [System.Serializable()]
+    [System.Diagnostics.DebuggerStepThrough()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    //[System.Xml.Serialization.XmlTypeAttribute(AnonymousType = true)]
+    [XmlRoot(ElementName = "results", Namespace = "", IsNullable = false)]
+    public partial class Results
     {
-        get
-        {
-            return this.peopleField;
-        }
-        set
-        {
-            this.peopleField = value;
-        }
-    }
 
-    [XmlAttribute()]
-    public int count
-    {
-        get
-        {
-            return this.countField;
-        }
-        set
-        {
-            this.countField = value;
-        }
-    }
+        private List<Person> peopleField;
 
-    [System.Xml.Serialization.XmlAttributeAttribute()]
-    public int pageNumber
-    {
-        get
-        {
-            return this.pageNumberField;
-        }
-        set
-        {
-            this.pageNumberField = value;
-        }
-    }
+        private int countField;
 
-    [System.Xml.Serialization.XmlAttributeAttribute()]
-    public int totalRecords
-    {
-        get
-        {
-            return this.totalRecordsField;
-        }
-        set
-        {
-            this.totalRecordsField = value;
-        }
-    }
+        private int pageNumberField;
 
-    [System.Xml.Serialization.XmlAttributeAttribute()]
-    public int additionalPages
-    {
-        get
+        private int totalRecordsField;
+
+        private int additionalPagesField;
+
+        //[XmlElementAttribute(IsNullable = false)]
+        [XmlElement(ElementName = "person", Type = (typeof(Person)), IsNullable = false)]
+        public List<Person> people
         {
-            return this.additionalPagesField;
+            get
+            {
+                return this.peopleField;
+            }
+            set
+            {
+                this.peopleField = value;
+            }
         }
-        set
+
+        [XmlAttribute()]
+        public int count
         {
-            this.additionalPagesField = value;
+            get
+            {
+                return this.countField;
+            }
+            set
+            {
+                this.countField = value;
+            }
+        }
+
+        [System.Xml.Serialization.XmlAttributeAttribute()]
+        public int pageNumber
+        {
+            get
+            {
+                return this.pageNumberField;
+            }
+            set
+            {
+                this.pageNumberField = value;
+            }
+        }
+
+        [System.Xml.Serialization.XmlAttributeAttribute()]
+        public int totalRecords
+        {
+            get
+            {
+                return this.totalRecordsField;
+            }
+            set
+            {
+                this.totalRecordsField = value;
+            }
+        }
+
+        [System.Xml.Serialization.XmlAttributeAttribute()]
+        public int additionalPages
+        {
+            get
+            {
+                return this.additionalPagesField;
+            }
+            set
+            {
+                this.additionalPagesField = value;
+            }
         }
     }
 }

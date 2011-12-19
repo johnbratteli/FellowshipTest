@@ -8,6 +8,8 @@ using System.Xml.Serialization;
 using System.Xml;
 using System.IO;
 using System.Reflection;
+using System.Text;
+using FellowshipTest.Models;
 
 namespace FellowshipTest.Controllers
 {
@@ -32,7 +34,7 @@ namespace FellowshipTest.Controllers
         public ActionResult Details(int id)
         {
             var foundPeopleRes = new Results();
-            var foundPerson = new person();
+            var foundPerson = new Person();
             var searchMethod = "Search?id=";
 
             var url = _baseUrl + searchMethod + id + "&" + _mode;
@@ -66,7 +68,7 @@ namespace FellowshipTest.Controllers
             var searchVal = "";
             var url = "";
             var foundPeopleRes = new Results();
-            var foundPeople = new List<person>();
+            var foundPeople = new List<Person>();
 
             // this allows us to search using a name or a household ID
             if (name != null)
@@ -245,6 +247,81 @@ namespace FellowshipTest.Controllers
                 return View();
             }
         }
+
+        //
+        // GET: /Person/CreateAddress/1234567
+
+        public ActionResult CreateAddress(string personID)
+        {
+            var personURI = _baseUrl + personID;
+            // TODO: figure out how to assign this correctly
+            var type = new AddressType(1, "Primary", "https://demo.fellowshiponeapi.com/v1/Addresses/AddressTypes/1");
+            if (personID == null || personURI == null || type == null)
+            {
+                throw new ArgumentNullException("I hate this!");
+            }
+            else
+            {
+                //var mod = new Address(personID, personURI, type);
+                var mod = new Address();
+                mod.person.id = personID;
+                mod.person.uri = personURI;
+                mod.addressType = type;
+                return View(mod);
+            }
+        }
+        
+        //
+        // POST: /Person/CreateAddress
+
+        [HttpPost]
+        //public ActionResult CreateAddresss(Address addr)
+        public ActionResult CreateAddress(FormCollection collection)
+        {
+            Address addr = new Address(collection);
+
+            /*
+            addr.person.id = collection["person.id"];
+            collection.Remove("person.id");
+            addr.person.uri = collection["person.uri"];
+            collection.Remove("person.uri");
+            addr.addressType.id = collection["addressType.id"];
+            collection.Remove("person.id");
+            addr.addressType.name = collection["addressType.name"];
+            collection.Remove("addressType.name");
+            addr.addressType.uri = collection["addressType.uri"];
+            */
+            //Address addr = (Address)collection;
+            var postMethod = "Addresses";
+            var personID = addr.person.id;
+            var url = _baseUrl + personID + postMethod;
+            var xmlString = new StringBuilder();
+
+            // serialze address object to xml
+            XmlWriter writer = XmlWriter.Create(xmlString);
+            XmlSerializer ser = new XmlSerializer(typeof(Address));
+            ser.Serialize(writer, addr);
+
+            try
+            {
+                // set up web request
+                HttpWebRequest req = (HttpWebRequest)WebRequest.Create(url);
+                req.Method = "POST";
+                req.ContentType = "text/xml; encoding='utf-8'";
+
+                //bytes = System.Text.Encoding.ASCII.GetBytes(v_objXm);
+
+                //reqStream = req.GetRequestStream();
+                
+
+
+                return RedirectToAction("Details/"+personID);
+            }
+            catch
+            {
+                return View();
+            }
+        }
     }
 
     // allows us to overload ActionResult methods
@@ -260,5 +337,4 @@ namespace FellowshipTest.Controllers
         }
         public string ValueName { get; private set; }
     }
-
 }
